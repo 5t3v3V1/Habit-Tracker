@@ -21,6 +21,8 @@ def save_habits(habit_dictionary):
 def add_habit(habit_dictionary):
     habit = input("Habit: ")
     while True:
+        habit = input("Habit: ")
+        
         if habit in habit_dictionary:
             print("Habit already exits")
             continue
@@ -106,7 +108,10 @@ def view_habits(habit_dictionary):
         current_streak = calc_current_streak(habit_dictionary, i)
         total_days = days_tracked(habit_dictionary, i)
         complete_days = days_completed(habit_dictionary, i)
-        percentage = complete_days/total_days
+        if total_days == 0:
+            percentage = 0
+        else:
+            percentage = complete_days/total_days 
         print("Max Streak For " + habit + " Is: " + str(max_streak))
         print("Current Streak For " + habit + " Is: " + str(current_streak))
         print("Total Days Tracked For " + habit + " Is " + str(total_days))
