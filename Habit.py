@@ -58,11 +58,26 @@ def calculate_streaks(habit_dictionary, index):
 
     return max_streak
 
+def calc_current_streak(habit_dictionary, index):
+    habit_marker = habit_dictionary[list(habit_dictionary)[index]]
+    current_streak = 0
+    for day in reversed(habit_marker):
+        if day == 1:
+            current_streak += 1
+        elif day == 0:
+            break
+    
+    return current_streak
+
+
 def view_habits(habit_dictionary):
     for i, (habit, marker) in enumerate(habit_dictionary.items()):
         print(str(i) + ". " + habit + ": " + str(marker))
-        max = calculate_streaks(habit_dictionary, i)
-        print("Max Streak For " + habit + " Is: " + str(max))
+        max_streak = calculate_streaks(habit_dictionary, i)
+        current_streak = calc_current_streak(habit_dictionary, i)
+        print("Max Streak For " + habit + " Is: " + str(max_streak))
+        print("Current Streak For " + habit + " Is: " + str(current_streak))
+
         print("\n")
 
 while True:
@@ -106,7 +121,7 @@ while True:
                 index = int(input("Choose Habit: "))
                 if index < 0 or index >= len(habit_dictionary):
                     print("Invalid Index")
-                    break
+                    continue
 
                 delete_habit(habit_dictionary, index)
                 break
