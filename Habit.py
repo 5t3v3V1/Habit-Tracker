@@ -69,17 +69,31 @@ def calc_current_streak(habit_dictionary, index):
     
     return current_streak
 
+def days_tracked(habit_dictionary, index):
+    habit_marker = habit_dictionary[list(habit_dictionary)[index]]
+    total_days = len(habit_marker)
+    return total_days
+
+def days_completed(habit_dictionary, index):
+    habit_marker = habit_dictionary[list(habit_dictionary)[index]]
+    complete_days = sum(habit_marker)
+    return complete_days
+
+
 
 def view_habits(habit_dictionary):
-
     print("\n")
 
     for i, (habit, marker) in enumerate(habit_dictionary.items()):
         print(str(i) + ". " + habit + ": " + str(marker))
         max_streak = calculate_streaks(habit_dictionary, i)
         current_streak = calc_current_streak(habit_dictionary, i)
+        total_days = days_tracked(habit_dictionary, i)
+        complete_days = days_completed(habit_dictionary, i)
         print("Max Streak For " + habit + " Is: " + str(max_streak))
         print("Current Streak For " + habit + " Is: " + str(current_streak))
+        print("Total Days Tracked For " + habit + " Is " + str(total_days))
+        print("Total Days Completed For " + habit + " Is " + str(complete_days))
 
         print("\n")
 
