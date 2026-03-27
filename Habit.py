@@ -43,9 +43,24 @@ def delete_habit(habit_dictionary, index):
     habit_dictionary.pop(habit_delete)
     return habit_dictionary
 
+def calculate_streaks(habit_dictionary, index):
+    habit_marker = habit_dictionary[list(habit_dictionary)[index]]
+    current_streak = 0
+    max_streak = 0
+    for day in habit_marker:
+        if day == 1:
+            current_streak += 1
+            if current_streak > max_streak
+                max_streak = current_streak
+        elif day == 0:
+            current_streak = 0
+
 def view_habits(habit_dictionary):
     for i, (habit, marker) in enumerate(habit_dictionary.items()):
         print(str(i) + ". " + habit + ": " + str(marker))
+        calculate_streaks(habit_dictionary, i)
+        print("Max Streak Is: " + max_streak)
+        print("\n")
 
 while True:
     view_habits(habit_dictionary)
