@@ -1,0 +1,8 @@
+load habits,
+save habits, 
+add habits,
+increment/mark habits,
+track streak,
+view streaks
+track biggest streak
+view habits
