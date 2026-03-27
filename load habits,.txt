@@ -6,3 +6,9 @@ track streak,
 view streaks
 track biggest streak
 view habits
+
+"Gym": [0,0,1,2,1]
+
+add habit streaks, and stats
+
+add try and except and error handling

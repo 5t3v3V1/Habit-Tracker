@@ -14,9 +14,9 @@ def load_habits():
 
 habit_dictionary = load_habits()
 
-def save_habits(habit_dictionary, no_habits):
+def save_habits(habit_dictionary):
     with open("habits.json", "w", encoding="utf-8") as file:
-        habit_json = json.dump(habit_dictionary, file, indent = no_habits)
+        json.dump(habit_dictionary, file, indent = 4)
 
 def add_habit(habit_dictionary):
     habit = input("Habit: ")
@@ -26,11 +26,13 @@ def add_habit(habit_dictionary):
 def mark_habit(habit_dictionary, index):
     marker = input("'Y' to mark complete, 'N' to mark incomplete: ")
     if marker == "Y":
-        habit_dictionary[index].append(1)
+        habit_name = list(habit_dictionary)[index]
+        habit_dictionary[habit_name].append(1)
         return habit_dictionary
     
     elif marker == "N":
-        habit_dictionary[index].append(2)
+        habit_name = list(habit_dictionary)[index]
+        habit_dictionary[habit_name].append(0)
         return habit_dictionary
     
     else:
@@ -41,6 +43,64 @@ def delete_habit(habit_dictionary, index):
     habit_dictionary.pop(habit_delete)
     return habit_dictionary
 
-def view_habits():
+def view_habits(habit_dictionary):
     for i, (habit, marker) in enumerate(habit_dictionary.items()):
-        print(i + ". " + habit + ": " + marker)
+        print(str(i) + ". " + habit + ": " + str(marker))
+
+while True:
+    view_habits(habit_dictionary)
+
+    print("\n1. Add Habit")
+    print("2. Mark Habit")
+    print("3. Delete Habit")
+    print("4. Exit")
+
+    choice = input("Choose Option: ")
+
+    if choice == "1":
+        add_habit(habit_dictionary)
+
+    elif choice == "2":
+        if not habit_dictionary:
+            print("No Habits Available")
+            continue
+
+        while True:
+            try:
+                index = int(input("Choose Habit: "))
+                if index < 0 or index >= len(habit_dictionary):
+                    print("Invalid Index")
+                    break
+
+            except ValueError:
+                print("Please input a number: ")
+
+            mark_habit(habit_dictionary, index)
+            break
+    
+    elif choice == "3":
+        if not habit_dictionary:
+            print("No Habits Available")
+            continue
+
+        while True:
+            try:
+                index = int(input("Choose Habit: "))
+                if index < 0 or index >= len(habit_dictionary):
+                    print("Invalid Index")
+                    break
+
+            except ValueError:
+                print("Please input a number: ")
+
+            delete_habit(habit_dictionary, index)
+            break
+
+    elif choice == "4":
+        save_habits(habit_dictionary)
+        break
+
+    else:
+        print("Invalid Choice")
+
+    
