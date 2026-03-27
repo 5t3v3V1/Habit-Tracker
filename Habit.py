@@ -71,6 +71,9 @@ def calc_current_streak(habit_dictionary, index):
 
 
 def view_habits(habit_dictionary):
+
+    print("\n")
+
     for i, (habit, marker) in enumerate(habit_dictionary.items()):
         print(str(i) + ". " + habit + ": " + str(marker))
         max_streak = calculate_streaks(habit_dictionary, i)
@@ -83,12 +86,12 @@ def view_habits(habit_dictionary):
 while True:
     view_habits(habit_dictionary)
 
-    print("\n1. Add Habit")
+    print("1. Add Habit")
     print("2. Mark Habit")
     print("3. Delete Habit")
     print("4. Exit")
 
-    choice = input("Choose Option: ")
+    choice = input("\nChoose Option: ")
 
     if choice == "1":
         add_habit(habit_dictionary)
@@ -100,7 +103,7 @@ while True:
 
         while True:
             try:
-                index = int(input("Choose Habit: "))
+                index = int(input("\nChoose Habit: "))
                 if index < 0 or index >= len(habit_dictionary):
                     print("Invalid Index")
                     continue
